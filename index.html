@@ -6,6 +6,10 @@
 <title>Post Exchange Website</title>
 
 <style>
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
     font-family: Arial, sans-serif;
@@ -17,6 +21,9 @@ nav{
     background:#020617;
     padding:15px;
     text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 nav a{
@@ -24,6 +31,7 @@ nav a{
     margin:15px;
     text-decoration:none;
     font-size:18px;
+    transition:0.3s;
 }
 
 nav a:hover{
@@ -31,8 +39,12 @@ nav a:hover{
 }
 
 section{
-    padding:40px;
+    padding:60px 20px;
     text-align:center;
+}
+
+h1,h2,h3{
+    margin-bottom:20px;
 }
 
 .category-btn{
@@ -44,24 +56,41 @@ section{
     color:white;
     font-size:16px;
     cursor:pointer;
+    transition:0.3s;
 }
 
 .category-btn:hover{
     background:#0284c7;
+    transform:scale(1.05);
 }
 
 #videoContainer{
-    margin-top:30px;
+    margin-top:40px;
+    animation:fadeIn 0.5s ease-in-out;
 }
 
 .movie-cover{
     width:220px;
     border-radius:12px;
     margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
 
-iframe{
-    max-width:90%;
+/* Responsive video */
+.video-wrapper{
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    max-width:800px;
+    margin:0 auto;
+}
+
+.video-wrapper iframe{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     border-radius:12px;
 }
 
@@ -69,6 +98,11 @@ footer{
     background:black;
     padding:20px;
     margin-top:40px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
 }
 </style>
 
@@ -108,38 +142,40 @@ footer{
 <section id="contact">
 <h2>ติดต่อ</h2>
 
-<p>Email 1: 
-<a href="mailto:petmongkolpromduang@gmail.com">
+<p>Email 1:
+<a href="mailto:petmongkolpromduang@gmail.com" style="color:#38bdf8;">
 petmongkolpromduang@gmail.com
 </a>
 </p>
 
-<p>Email 2: 
-<a href="mailto:nez47986@gmail.com">
+<p>Email 2:
+<a href="mailto:nez47986@gmail.com" style="color:#38bdf8;">
 nez47986@gmail.com
 </a>
 </p>
 
 </section>
 
+<footer>
+<p>© 2026 Post Exchange Website</p>
+</footer>
+
 <script>
 
 function showCategory(category){
 
 let videoHTML = `
-<div style="text-align:center;">
+<div>
 
-<img src="./cover.jpg" class="movie-cover" alt="ปกหนัง">
+<img src="cover.jpg" class="movie-cover" alt="ปกหนัง">
 
-<br>
-
+<div class="video-wrapper">
 <iframe
 src="https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
-width="720"
-height="405"
 allow="autoplay"
 allowfullscreen>
 </iframe>
+</div>
 
 </div>
 `;
