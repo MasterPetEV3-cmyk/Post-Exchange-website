@@ -1,168 +1,60 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Post Exchange Website</title>
+    <meta charset="UTF-8">
+    <title>Post Exchange Website</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
 
-<style>
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#0f172a;
-    color:white;
-}
+        h1 {
+            color: #ff4da6;
+        }
 
-nav{
-    background:#020617;
-    padding:15px;
-    text-align:center;
-}
+        .movie {
+            margin-top: 40px;
+        }
 
-nav a{
-    color:white;
-    margin:15px;
-    text-decoration:none;
-    font-size:18px;
-}
+        .movie img {
+            width: 250px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
 
-nav a:hover{
-    color:#38bdf8;
-}
+        .movie img:hover {
+            transform: scale(1.05);
+        }
 
-section{
-    padding:40px;
-    text-align:center;
-}
-
-.category-btn{
-    padding:12px 25px;
-    margin:10px;
-    border:none;
-    border-radius:8px;
-    background:#38bdf8;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.category-btn:hover{
-    background:#0284c7;
-}
-
-#videoContainer{
-    margin-top:30px;
-}
-
-iframe{
-    max-width:90%;
-    border-radius:12px;
-}
-
-footer{
-    background:black;
-    padding:20px;
-    margin-top:40px;
-}
-</style>
-
+        iframe {
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
+
 <body>
 
-<nav>
-<a href="#home">หน้าแรก</a>
-<a href="#category">หมวดหมู่</a>
-<a href="#about">เกี่ยวกับ</a>
-<a href="#contact">ติดต่อ</a>
-</nav>
+    <h1>🎬 เว็บดูหนังของฉัน</h1>
 
-<section id="home">
-<h1>🎬 Post Exchange Website</h1>
-<p>เว็บไซต์ดูหนังของคุณ</p>
-</section>
+    <div class="movie">
+        <h2>หมวด: โรแมนติก</h2>
 
-<section id="category">
+        <!-- รูปปก -->
+        <img src="cover.jpg" alt="ปกหนัง">
 
-<h2>หมวดหมู่</h2>
+        <br>
 
-<button class="category-btn" onclick="showCategory('romance')">โรแมนติก</button>
-<button class="category-btn" onclick="showCategory('drama')">ดราม่า</button>
-<button class="category-btn" onclick="showCategory('action')">แอคชั่น</button>
-<button class="category-btn" onclick="showCategory('comedy')">ตลก</button>
-
-<div id="videoContainer"></div>
-
-</section>
-
-<section id="about">
-<h2>เกี่ยวกับเรา</h2>
-<p>เว็บไซต์นี้สร้างโดย Petmongkol เพื่อใช้แสดงวิดีโอผ่าน GitHub Pages</p>
-</section>
-
-<section id="contact">
-<h2>ติดต่อ</h2>
-
-<p>Email 1: 
-<a href="mailto:petmongkolpromduang@gmail.com">
-petmongkolpromduang@gmail.com
-</a>
-</p>
-
-<p>Email 2: 
-<a href="mailto:nez47986@gmail.com">
-nez47986@gmail.com
-</a>
-</p>
-
-</section>
-
-
-<script>
-
-function showCategory(category){
-
-let videoHTML = `
-<div style="text-align:center;">
-
-<img src="cover.jpg" width="220">
-
-<br><br>
-
-<iframe
-src="https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
-width="720"
-height="405"
-allow="autoplay">
-</iframe>
-
-</div>
-`;
-
-
-if(category === "romance"){
-document.getElementById("videoContainer").innerHTML =
-"<h3>หมวด: โรแมนติก</h3>" + videoHTML;
-}
-
-else if(category === "drama"){
-document.getElementById("videoContainer").innerHTML =
-"<h3>หมวด: ดราม่า</h3>" + videoHTML;
-}
-
-else if(category === "action"){
-document.getElementById("videoContainer").innerHTML =
-"<h3>หมวด: แอคชั่น</h3><p>ยังไม่มีวิดีโอ</p>";
-}
-
-else if(category === "comedy"){
-document.getElementById("videoContainer").innerHTML =
-"<h3>หมวด: ตลก</h3><p>ยังไม่มีวิดีโอ</p>";
-}
-
-}
-
-</script>
+        <!-- วิดีโอ (ตัวอย่าง YouTube ใส่ลิงก์ของคุณได้) -->
+        <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+    </div>
 
 </body>
 </html>
-
