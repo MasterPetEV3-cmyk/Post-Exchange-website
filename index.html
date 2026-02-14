@@ -1,135 +1,187 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Post Exchange-Website</title>
+<title>Post Exchange Website</title>
 
 <style>
-body {
-    margin: 0;
+
+body{
+    margin:0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #141e30, #243b55);
-    color: white;
-    text-align: center;
+    background:#0f172a;
+    color:white;
 }
 
 /* Navbar */
-nav {
-    background: rgba(0,0,0,0.8);
-    padding: 15px;
-    position: sticky;
-    top: 0;
+nav{
+    background:#020617;
+    padding:15px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 20px;
-    text-decoration: none;
-    font-weight: bold;
+nav a{
+    color:white;
+    margin:15px;
+    text-decoration:none;
+    font-size:18px;
 }
 
-nav a:hover {
-    color: #00d4ff;
+nav a:hover{
+    color:#38bdf8;
 }
 
-/* Sections */
-section {
-    padding: 60px 20px;
+/* Section */
+section{
+    padding:40px;
+    text-align:center;
+}
+
+/* Home */
+#home{
+    background:#020617;
 }
 
 /* Video */
-video {
-    margin-top: 20px;
-    width: 80%;
-    max-width: 900px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+.video-container{
+    margin-top:20px;
+}
+
+iframe{
+    max-width:90%;
+    border-radius:10px;
 }
 
 /* Category buttons */
-.category-btn {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    background: #00d4ff;
+.category-btn{
+    padding:12px 25px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+    background:#38bdf8;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
 
-.category-btn:hover {
-    background: #0099cc;
-    color: white;
+.category-btn:hover{
+    background:#0284c7;
+}
+
+/* Result */
+#categoryResult{
+    margin-top:20px;
+    font-size:20px;
 }
 
 /* Footer */
-footer {
-    background: black;
-    padding: 20px;
-    margin-top: 40px;
+footer{
+    background:black;
+    padding:20px;
+    margin-top:40px;
 }
-</style>
-</head>
 
+</style>
+
+</head>
 <body>
+
 
 <!-- Navbar -->
 <nav>
-    <a href="#home">หน้าแรก</a>
-    <a href="#category">หมวดหมู่</a>
-    <a href="#about">เกี่ยวกับเรา</a>
-    <a href="#contact">ติดต่อ</a>
+<a href="#home">หน้าแรก</a>
+<a href="#category">หมวดหมู่</a>
+<a href="#about">เกี่ยวกับ</a>
+<a href="#contact">ติดต่อ</a>
 </nav>
+
 
 <!-- Home -->
 <section id="home">
-    <h1>🎬 Post Exchange-website</h1>
-    <p>ยินดีต้อนรับสู่เว็บไซต์ดูหนังของคุณ</p>
 
-    <video width="720" controls>
-        <source src="movie.mp4" type="video/mp4">
-    </video>
+<h1>🎬 Post Exchange Website</h1>
+
+<p>เว็บไซต์ดูหนังของคุณ</p>
+
+<div class="video-container">
+
+<iframe
+src="https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
+width="720"
+height="405"
+allow="autoplay">
+</iframe>
+
+</div>
 
 </section>
-
-<section id="category">
 
 
 <!-- Category -->
 <section id="category">
-    <h2>หมวดหมู่</h2>
 
-    <button class="category-btn" onclick="selectCategory('แอคชั่น')">แอคชั่น</button>
-    <button class="category-btn" onclick="selectCategory('โรแมนติก')">โรแมนติก</button>
-    <button class="category-btn" onclick="selectCategory('ตลก')">ตลก</button>
+<h2>หมวดหมู่</h2>
 
-    <p id="categoryResult"></p>
+<button class="category-btn"
+onclick="selectCategory('แอคชั่น')">แอคชั่น</button>
+
+<button class="category-btn"
+onclick="selectCategory('โรแมนติก')">โรแมนติก</button>
+
+<button class="category-btn"
+onclick="selectCategory('ตลก')">ตลก</button>
+
+<p id="categoryResult"></p>
+
 </section>
+
 
 <!-- About -->
 <section id="about">
-    <h2>เกี่ยวกับเรา</h2>
-    <p>เว็บไซต์นี้สร้างขึ้นเพื่อฝึกพัฒนาเว็บไซต์และแสดงผลงาน</p>
+
+<h2>เกี่ยวกับเรา</h2>
+
+<p>
+เว็บไซต์นี้สร้างโดย Petmongkol<br>
+เพื่อใช้สำหรับแสดงวิดีโอผ่าน GitHub Pages
+</p>
+
 </section>
+
 
 <!-- Contact -->
 <section id="contact">
-    <h2>ติดต่อ</h2>
-    <p>Email: example@email.com</p>
+
+<h2>ติดต่อ</h2>
+
+<p>Email: example@email.com</p>
+
 </section>
+
 
 <!-- Footer -->
 <footer>
-    © 2026 Post Exchange-Website
+
+<p>© 2026 Post Exchange Website</p>
+
 </footer>
 
+
+<!-- Script -->
 <script>
-function selectCategory(category) {
-    document.getElementById("categoryResult").innerText =
-        "คุณเลือกหมวดหมู่: " + category;
+
+function selectCategory(category){
+
+document.getElementById("categoryResult").innerHTML =
+"คุณเลือกหมวดหมู่: " + category;
+
 }
+
 </script>
+
 
 </body>
 </html>
+```
