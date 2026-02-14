@@ -1,106 +1,139 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>Post Exchange-website</title>
+    <meta charset="UTF-8">
+    <title>Post Exchange-website</title>
 
-<style>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: white;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+        /* Navbar */
+        nav {
+            background-color: rgba(0,0,0,0.8);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+        }
 
-    /* พื้นหลังสวยๆ */
-    background: linear-gradient(135deg, #141e30, #243b55);
-    color: white;
-}
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-/* แถบบน */
-header {
-    background: rgba(0,0,0,0.6);
-    padding: 20px;
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-}
+        nav a:hover {
+            color: #00d4ff;
+        }
 
-/* กล่องหลัก */
-.container {
-    padding: 20px;
-}
+        /* Sections */
+        section {
+            padding: 40px;
+        }
 
-/* ช่องค้นหา */
-.search-box {
-    margin-bottom: 20px;
-}
+        /* Video */
+        video {
+            margin-top: 20px;
+            border-radius: 10px;
+        }
 
-input {
-    padding: 10px;
-    width: 250px;
-    border-radius: 8px;
-    border: none;
-}
+        /* Category buttons */
+        .category button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00d4ff;
+            color: black;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-/* หมวดหมู่ */
-select {
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-}
+        .category button:hover {
+            background-color: #00aacc;
+        }
 
-/* กล่องวิดีโอ */
-.video-box {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 20px;
-}
+        footer {
+            background-color: black;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
 
-</style>
+    </style>
 
 </head>
 
 <body>
 
-<header>
-🎬 Post Exchange-website
-</header>
+<!-- Navbar -->
+<nav>
+    <a href="#home">หน้าแรก</a>
+    <a href="#category">หมวดหมู่</a>
+    <a href="#about">เกี่ยวกับเรา</a>
+    <a href="#contact">ติดต่อ</a>
+</nav>
 
-<div class="container">
+<!-- Home -->
+<section id="home">
+    <h1>🎬 Post Exchange-website</h1>
+    <p>ยินดีต้อนรับสู่เว็บไซต์ดูหนังของคุณ</p>
 
-    <!-- ช่องค้นหา -->
-    <div class="search-box">
-        🔎 ค้นหาหนัง:
-        <input type="text" placeholder="พิมพ์ชื่อหนัง...">
+    <video width="720" controls>
+        <source src="movie.mp4" type="video/mp4">
+    </video>
+</section>
+
+<!-- Category -->
+<section id="category">
+    <h2>📂 หมวดหมู่</h2>
+
+    <div class="category">
+        <button onclick="selectCategory('Action')">แอคชั่น</button>
+        <button onclick="selectCategory('Romantic')">โรแมนติก</button>
+        <button onclick="selectCategory('Horror')">สยองขวัญ</button>
+        <button onclick="selectCategory('All')">ทั้งหมด</button>
     </div>
 
-    <!-- หมวดหมู่ -->
-    <div>
-        📁 หมวดหมู่:
-        <select>
-            <option>ทั้งหมด</option>
-            <option>แอคชั่น</option>
-            <option>โรแมนติก</option>
-            <option>สยองขวัญ</option>
-            <option>ไซไฟ</option>
-            <option>คอมเมดี้</option>
-        </select>
-    </div>
+    <p id="categoryResult">เลือกหมวดหมู่เพื่อดูหนัง</p>
+</section>
 
-    <!-- วิดีโอ -->
-    <div class="video-box">
+<!-- About -->
+<section id="about">
+    <h2>ℹ️ เกี่ยวกับเรา</h2>
+    <p>
+        Post Exchange-website เป็นเว็บไซต์สำหรับดูหนังออนไลน์  
+        สร้างโดยผู้พัฒนาเพื่อเรียนรู้การสร้างเว็บไซต์และระบบสตรีมมิ่ง
+    </p>
+</section>
 
-        <h2>🎥 ตัวอย่างหนัง</h2>
+<!-- Contact -->
+<section id="contact">
+    <h2>📞 ติดต่อ</h2>
+    <p>Email: example@email.com</p>
+    <p>GitHub: MasterPetEV3-cmyk</p>
+</section>
 
-        <video width="720" controls>
-            <source src="movie.mp4" type="video/mp4">
-        </video>
+<!-- Footer -->
+<footer>
+    © 2026 Post Exchange-website
+</footer>
 
-    </div>
+<!-- Script -->
+<script>
 
-</div>
+function selectCategory(category)
+{
+    document.getElementById("categoryResult").innerText =
+        "คุณเลือกหมวดหมู่: " + category;
+}
+
+</script>
 
 </body>
 </html>
-
