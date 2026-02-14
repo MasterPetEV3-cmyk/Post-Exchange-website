@@ -6,9 +6,7 @@
 <title>Post Exchange Website</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{ box-sizing:border-box; }
 
 body{
     margin:0;
@@ -34,17 +32,11 @@ nav a{
     transition:0.3s;
 }
 
-nav a:hover{
-    color:#38bdf8;
-}
+nav a:hover{ color:#38bdf8; }
 
 section{
     padding:60px 20px;
     text-align:center;
-}
-
-h1,h2,h3{
-    margin-bottom:20px;
 }
 
 .category-btn{
@@ -64,10 +56,7 @@ h1,h2,h3{
     transform:scale(1.05);
 }
 
-#videoContainer{
-    margin-top:40px;
-    animation:fadeIn 0.5s ease-in-out;
-}
+#videoContainer{ margin-top:40px; }
 
 .movie-cover{
     width:220px;
@@ -76,7 +65,6 @@ h1,h2,h3{
     box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
 
-/* Responsive video */
 .video-wrapper{
     position:relative;
     padding-bottom:56.25%;
@@ -99,14 +87,9 @@ footer{
     padding:20px;
     margin-top:40px;
 }
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
-}
 </style>
-
 </head>
+
 <body>
 
 <nav>
@@ -129,6 +112,12 @@ footer{
 <button class="category-btn" onclick="showCategory('drama')">ดราม่า</button>
 <button class="category-btn" onclick="showCategory('action')">แอคชั่น</button>
 <button class="category-btn" onclick="showCategory('comedy')">ตลก</button>
+<button class="category-btn" onclick="showCategory('horror')">สยองขวัญ</button>
+<button class="category-btn" onclick="showCategory('mystery')">สืบสวน</button>
+<button class="category-btn" onclick="showCategory('fantasy')">แฟนตาซี</button>
+<button class="category-btn" onclick="showCategory('scifi')">ไซไฟ</button>
+<button class="category-btn" onclick="showCategory('documentary')">สารคดี</button>
+<button class="category-btn" onclick="showCategory('family')">ครอบครัว</button>
 
 <div id="videoContainer"></div>
 
@@ -166,9 +155,7 @@ function showCategory(category){
 
 let videoHTML = `
 <div>
-
 <img src="cover.jpg" class="movie-cover" alt="ปกหนัง">
-
 <div class="video-wrapper">
 <iframe
 src="https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
@@ -176,7 +163,6 @@ allow="autoplay"
 allowfullscreen>
 </iframe>
 </div>
-
 </div>
 `;
 
@@ -198,6 +184,36 @@ document.getElementById("videoContainer").innerHTML =
 else if(category === "comedy"){
 document.getElementById("videoContainer").innerHTML =
 "<h3>หมวด: ตลก</h3><p>ยังไม่มีวิดีโอ</p>";
+}
+
+else if(category === "horror"){
+document.getElementById("videoContainer").innerHTML =
+"<h3>หมวด: สยองขวัญ</h3><p>ยังไม่มีวิดีโอ</p>";
+}
+
+else if(category === "mystery"){
+document.getElementById("videoContainer").innerHTML =
+"<h3>หมวด: สืบสวน</h3><p>ยังไม่มีวิดีโอ</p>";
+}
+
+else if(category === "fantasy"){
+document.getElementById("videoContainer").innerHTML =
+"<h3>หมวด: แฟนตาซี</h3><p>ยังไม่มีวิดีโอ</p>";
+}
+
+else if(category === "scifi"){
+document.getElementById("videoContainer").innerHTML =
+"<h3>หมวด: ไซไฟ</h3><p>ยังไม่มีวิดีโอ</p>";
+}
+
+else if(category === "documentary"){
+document.getElementById("videoContainer").innerHTML =
+"<h3>หมวด: สารคดี</h3><p>ยังไม่มีวิดีโอ</p>";
+}
+
+else if(category === "family"){
+document.getElementById("videoContainer").innerHTML =
+"<h3>หมวด: ครอบครัว</h3><p>ยังไม่มีวิดีโอ</p>";
 }
 
 }
