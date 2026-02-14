@@ -1,72 +1,75 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <title>Post Exchange-website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Exchange-Website</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #141e30, #243b55);
-            color: white;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: white;
+    text-align: center;
+}
 
-        /* Navbar */
-        nav {
-            background-color: rgba(0,0,0,0.8);
-            padding: 15px;
-            position: sticky;
-            top: 0;
-        }
+/* Navbar */
+nav {
+    background: rgba(0,0,0,0.8);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+}
 
-        nav a {
-            color: white;
-            margin-right: 20px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+nav a {
+    color: white;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        nav a:hover {
-            color: #00d4ff;
-        }
+nav a:hover {
+    color: #00d4ff;
+}
 
-        /* Sections */
-        section {
-            padding: 40px;
-        }
+/* Sections */
+section {
+    padding: 60px 20px;
+}
 
-        /* Video */
-        video {
-            margin-top: 20px;
-            border-radius: 10px;
-        }
+/* Video */
+video {
+    margin-top: 20px;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+}
 
-        /* Category buttons */
-        .category button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: #00d4ff;
-            color: black;
-            cursor: pointer;
-            font-weight: bold;
-        }
+/* Category buttons */
+.category-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    background: #00d4ff;
+}
 
-        .category button:hover {
-            background-color: #00aacc;
-        }
+.category-btn:hover {
+    background: #0099cc;
+    color: white;
+}
 
-        footer {
-            background-color: black;
-            padding: 20px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-    </style>
-
+/* Footer */
+footer {
+    background: black;
+    padding: 20px;
+    margin-top: 40px;
+}
+</style>
 </head>
 
 <body>
@@ -81,58 +84,48 @@
 
 <!-- Home -->
 <section id="home">
-    <h1>🎬 Post Exchange-website</h1>
+    <h1>🎬 Post Exchange-Website</h1>
     <p>ยินดีต้อนรับสู่เว็บไซต์ดูหนังของคุณ</p>
 
-    <video width="720" controls>
+    <video controls>
         <source src="movie.mp4" type="video/mp4">
+        เบราว์เซอร์ของคุณไม่รองรับวิดีโอ
     </video>
 </section>
 
 <!-- Category -->
 <section id="category">
-    <h2>📂 หมวดหมู่</h2>
+    <h2>หมวดหมู่</h2>
 
-    <div class="category">
-        <button onclick="selectCategory('Action')">แอคชั่น</button>
-        <button onclick="selectCategory('Romantic')">โรแมนติก</button>
-        <button onclick="selectCategory('Horror')">สยองขวัญ</button>
-        <button onclick="selectCategory('All')">ทั้งหมด</button>
-    </div>
+    <button class="category-btn" onclick="selectCategory('แอคชั่น')">แอคชั่น</button>
+    <button class="category-btn" onclick="selectCategory('โรแมนติก')">โรแมนติก</button>
+    <button class="category-btn" onclick="selectCategory('ตลก')">ตลก</button>
 
-    <p id="categoryResult">เลือกหมวดหมู่เพื่อดูหนัง</p>
+    <p id="categoryResult"></p>
 </section>
 
 <!-- About -->
 <section id="about">
-    <h2>ℹ️ เกี่ยวกับเรา</h2>
-    <p>
-        Post Exchange-website เป็นเว็บไซต์สำหรับดูหนังออนไลน์  
-        สร้างโดยผู้พัฒนาเพื่อเรียนรู้การสร้างเว็บไซต์และระบบสตรีมมิ่ง
-    </p>
+    <h2>เกี่ยวกับเรา</h2>
+    <p>เว็บไซต์นี้สร้างขึ้นเพื่อฝึกพัฒนาเว็บไซต์และแสดงผลงาน</p>
 </section>
 
 <!-- Contact -->
 <section id="contact">
-    <h2>📞 ติดต่อ</h2>
+    <h2>ติดต่อ</h2>
     <p>Email: example@email.com</p>
-    <p>GitHub: MasterPetEV3-cmyk</p>
 </section>
 
 <!-- Footer -->
 <footer>
-    © 2026 Post Exchange-website
+    © 2026 Post Exchange-Website
 </footer>
 
-<!-- Script -->
 <script>
-
-function selectCategory(category)
-{
+function selectCategory(category) {
     document.getElementById("categoryResult").innerText =
         "คุณเลือกหมวดหมู่: " + category;
 }
-
 </script>
 
 </body>
