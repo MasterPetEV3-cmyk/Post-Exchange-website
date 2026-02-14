@@ -6,94 +6,101 @@
 <title>Post Exchange Website</title>
 
 <style>
-*{ box-sizing:border-box; }
+
+*{
+box-sizing:border-box;
+}
 
 body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#0f172a;
-    color:white;
+margin:0;
+font-family: Arial;
+background:#0f172a;
+color:white;
 }
 
 nav{
-    background:#020617;
-    padding:15px;
-    text-align:center;
-    position:sticky;
-    top:0;
+background:#020617;
+padding:15px;
+text-align:center;
+position:sticky;
+top:0;
 }
 
 nav a{
-    color:white;
-    margin:15px;
-    text-decoration:none;
+color:white;
+margin:15px;
+text-decoration:none;
 }
 
-nav a:hover{ color:#38bdf8; }
+nav a:hover{
+color:#38bdf8;
+}
 
 section{
-    padding:60px 20px;
-    text-align:center;
+padding:60px 20px;
+text-align:center;
 }
 
 .category-btn{
-    padding:10px 20px;
-    margin:6px;
-    border:none;
-    border-radius:8px;
-    background:#38bdf8;
-    color:white;
-    cursor:pointer;
+padding:10px 20px;
+margin:6px;
+border:none;
+border-radius:8px;
+background:#38bdf8;
+color:white;
+cursor:pointer;
 }
 
 .category-btn:hover{
-    background:#0284c7;
-}
-
-.search-box{
-    margin-top:20px;
+background:#0284c7;
 }
 
 .search-box input{
-    padding:10px;
-    width:250px;
-    border-radius:6px;
-    border:none;
+padding:10px;
+width:250px;
+border-radius:6px;
+border:none;
 }
 
 .search-box button{
-    padding:10px 15px;
-    border:none;
-    border-radius:6px;
-    background:#38bdf8;
-    color:white;
-    cursor:pointer;
+padding:10px;
+border:none;
+border-radius:6px;
+background:#38bdf8;
+color:white;
+cursor:pointer;
 }
 
 .movie-cover{
-    width:200px;
-    border-radius:10px;
-    margin:15px 0;
+width:200px;
+border-radius:10px;
+margin:15px auto;
+display:block;
 }
 
 .video-wrapper{
-    position:relative;
-    padding-bottom:56.25%;
-    height:0;
-    max-width:800px;
-    margin:0 auto;
+position:relative;
+padding-bottom:56.25%;
+height:0;
+max-width:800px;
+margin:20px auto;
 }
 
 .video-wrapper iframe{
-    position:absolute;
-    width:100%;
-    height:100%;
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:none;
 }
 
 footer{
-    background:black;
-    padding:20px;
+background:black;
+padding:20px;
+text-align:center;
 }
+
 </style>
 </head>
 
@@ -107,30 +114,42 @@ footer{
 </nav>
 
 <section id="home">
+
 <h1>🎬 Post Exchange Website</h1>
-<p>เว็บไซต์ดูหนังของคุณ</p>
 
 <div class="search-box">
-<input type="text" id="searchInput" placeholder="พิมพ์ชื่อหนัง...">
+<input type="text" id="searchInput" placeholder="ค้นหาหนัง">
 <button onclick="searchMovie()">ค้นหา</button>
 </div>
+
 </section>
 
 <section id="category">
+
 <h2>หมวดหมู่</h2>
 
 <button class="category-btn" onclick="filterCategory('romance')">โรแมนติก</button>
+
 <button class="category-btn" onclick="filterCategory('drama')">ดราม่า</button>
+
 <button class="category-btn" onclick="filterCategory('action')">แอคชั่น</button>
+
 <button class="category-btn" onclick="filterCategory('comedy')">ตลก</button>
+
 <button class="category-btn" onclick="filterCategory('horror')">สยองขวัญ</button>
+
 <button class="category-btn" onclick="filterCategory('mystery')">สืบสวน</button>
+
 <button class="category-btn" onclick="filterCategory('fantasy')">แฟนตาซี</button>
+
 <button class="category-btn" onclick="filterCategory('scifi')">ไซไฟ</button>
+
 <button class="category-btn" onclick="filterCategory('documentary')">สารคดี</button>
+
 <button class="category-btn" onclick="filterCategory('family')">ครอบครัว</button>
 
 <div id="videoContainer"></div>
+
 </section>
 
 <section id="about">
@@ -144,73 +163,85 @@ footer{
 </section>
 
 <footer>
-<p>© 2026 Post Exchange Website</p>
+© 2026 Post Exchange Website
 </footer>
 
 <script>
 
-// ฐานข้อมูลหนัง (กำหนดหมวดให้ถูกต้อง)
 const movies = [
+
 {
 title:"รู้ว่ามีอยู่ก็สายไป",
 category:"romance",
 cover:"cover.jpg",
 video:"https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
 },
+
 {
-title:"ดราม่า",
+title:"รู้ว่ามีอยู่ก็สายไป",
 category:"drama",
 cover:"cover.jpg",
 video:"https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
-},
-{
-title:"แอ็คชั่น",
-category:"action",
-cover:"cover.jpg",
-video:"https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
 }
+
 ];
 
 function displayMovies(list){
+
 let container = document.getElementById("videoContainer");
+
 container.innerHTML="";
 
-if(list.length === 0){
-container.innerHTML="<p>ยังไม่มีหนังในหมวดนี้</p>";
+if(list.length===0){
+
+container.innerHTML="<p>ไม่มีหนัง</p>";
+
 return;
+
 }
 
 list.forEach(movie=>{
-container.innerHTML += `
+
+container.innerHTML+=`
+
 <h3>${movie.title}</h3>
+
 <img src="${movie.cover}" class="movie-cover">
+
 <div class="video-wrapper">
+
 <iframe src="${movie.video}" allowfullscreen></iframe>
+
 </div>
+
 <hr>
+
 `;
+
 });
+
 }
 
 function filterCategory(cat){
-let result = movies.filter(movie => movie.category === cat);
+
+let result = movies.filter(movie=>movie.category===cat);
+
 displayMovies(result);
+
 }
 
 function searchMovie(){
+
 let keyword = document.getElementById("searchInput").value.toLowerCase();
-let result = movies.filter(movie =>
+
+let result = movies.filter(movie=>
 movie.title.toLowerCase().includes(keyword)
 );
+
 displayMovies(result);
+
 }
 
-document.getElementById("searchInput")
-.addEventListener("keyup", function(e){
-if(e.key === "Enter"){
-searchMovie();
-}
-});
 </script>
 
 </body>
