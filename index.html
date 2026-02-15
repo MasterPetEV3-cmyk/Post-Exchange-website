@@ -7,13 +7,9 @@
 
 <style>
 
-*{
-box-sizing:border-box;
-}
-
 body{
 margin:0;
-font-family: Arial;
+font-family:Arial;
 background:#0f172a;
 color:white;
 }
@@ -22,8 +18,6 @@ nav{
 background:#020617;
 padding:15px;
 text-align:center;
-position:sticky;
-top:0;
 }
 
 nav a{
@@ -37,13 +31,13 @@ color:#38bdf8;
 }
 
 section{
-padding:60px 20px;
+padding:40px;
 text-align:center;
 }
 
 .category-btn{
-padding:10px 20px;
-margin:6px;
+padding:10px 18px;
+margin:5px;
 border:none;
 border-radius:8px;
 background:#38bdf8;
@@ -55,27 +49,23 @@ cursor:pointer;
 background:#0284c7;
 }
 
-.search-box input{
-padding:10px;
-width:250px;
-border-radius:6px;
-border:none;
+.movie-cover{
+width:200px;
+border-radius:10px;
+margin:15px;
 }
 
-.search-box button{
-padding:10px;
+.watch-btn{
+padding:10px 20px;
+background:#22c55e;
 border:none;
-border-radius:6px;
-background:#38bdf8;
+border-radius:8px;
 color:white;
 cursor:pointer;
 }
 
-.movie-cover{
-width:200px;
-border-radius:10px;
-margin:15px auto;
-display:block;
+.watch-btn:hover{
+background:#16a34a;
 }
 
 .video-wrapper{
@@ -83,44 +73,69 @@ position:relative;
 padding-bottom:56.25%;
 height:0;
 max-width:800px;
-margin:20px auto;
+margin:auto;
 }
 
 .video-wrapper iframe{
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
+left:0;
+top:0;
+}
+
+.password-box{
+background:#020617;
+padding:20px;
+margin:20px auto;
+width:300px;
+border-radius:10px;
+}
+
+.password-box input{
+padding:10px;
+width:90%;
+margin:10px;
+border-radius:6px;
 border:none;
+}
+
+.password-box button{
+padding:10px 20px;
+border:none;
+border-radius:6px;
+background:#38bdf8;
+color:white;
+cursor:pointer;
 }
 
 footer{
 background:black;
 padding:20px;
 text-align:center;
+margin-top:40px;
 }
 
 </style>
-</head>
 
+</head>
 <body>
 
 <nav>
+
 <a href="#home">หน้าแรก</a>
 <a href="#category">หมวดหมู่</a>
 <a href="#about">เกี่ยวกับ</a>
 <a href="#contact">ติดต่อ</a>
+
 </nav>
 
 <section id="home">
 
 <h1>🎬 Post Exchange Website</h1>
 
-<div class="search-box">
-<input type="text" id="searchInput" placeholder="ค้นหาหนัง">
-<button onclick="searchMovie()">ค้นหา</button>
-</div>
+<input id="searchInput" placeholder="ค้นหาหนัง" style="padding:10px;border-radius:6px;border:none;">
+<button onclick="searchMovie()" class="category-btn">ค้นหา</button>
 
 </section>
 
@@ -133,34 +148,31 @@ text-align:center;
 <button class="category-btn" onclick="filterCategory('action')">แอคชั่น</button>
 <button class="category-btn" onclick="filterCategory('comedy')">ตลก</button>
 <button class="category-btn" onclick="filterCategory('horror')">สยองขวัญ</button>
-<button class="category-btn" onclick="filterCategory('mystery')">สืบสวน</button>
 <button class="category-btn" onclick="filterCategory('fantasy')">แฟนตาซี</button>
-<button class="category-btn" onclick="filterCategory('scifi')">ไซไฟ</button>
-<button class="category-btn" onclick="filterCategory('documentary')">สารคดี</button>
-<button class="category-btn" onclick="filterCategory('family')">ครอบครัว</button>
 
-<div id="videoContainer"></div>
+<div id="movieContainer"></div>
 
 </section>
 
 <section id="about">
+
 <h2>เกี่ยวกับเรา</h2>
 <p>เว็บไซต์นี้สร้างโดย MasterPetEV3</p>
+
 </section>
 
 <section id="contact">
+
 <h2>ติดต่อ</h2>
 
 <p>
-Email 1:
-<a href="mailto:petmongkolpromduang@gmail.com" style="color:#f83838; text-decoration:none;">
+<a href="mailto:petmongkolpromduang@gmail.com" style="color:red;text-decoration:none;">
 petmongkolpromduang@gmail.com
 </a>
 </p>
 
 <p>
-Email 2:
-<a href="mailto:nez47986@gmail.com" style="color:#f83838; text-decoration:none;">
+<a href="mailto:nez47986@gmail.com" style="color:red;text-decoration:none;">
 nez47986@gmail.com
 </a>
 </p>
@@ -168,12 +180,14 @@ nez47986@gmail.com
 </section>
 
 <footer>
+
 © 2026 Post Exchange Website
+
 </footer>
 
 <script>
 
-const movies = [
+let movies = [
 
 {
 title:"รู้ว่ามีอยู่ก็สายไป",
@@ -191,13 +205,15 @@ video:"https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview
 
 ];
 
+let currentVideo="";
+
 function displayMovies(list){
 
-let container = document.getElementById("videoContainer");
+let container=document.getElementById("movieContainer");
 container.innerHTML="";
 
-if(list.length===0){
-container.innerHTML="<p>ไม่มีหนัง</p>";
+if(list.length==0){
+container.innerHTML="ไม่พบหนัง";
 return;
 }
 
@@ -209,8 +225,10 @@ container.innerHTML+=`
 
 <img src="${movie.cover}" class="movie-cover">
 
-<button onclick="checkPassword('${movie.video}')"
-style="padding:10px 20px;border:none;border-radius:8px;background:#38bdf8;color:white;cursor:pointer;">
+<br>
+
+<button class="watch-btn"
+onclick="showPasswordBox('${movie.video}')">
 ดูวิดีโอ
 </button>
 
@@ -222,39 +240,74 @@ style="padding:10px 20px;border:none;border-radius:8px;background:#38bdf8;color:
 
 }
 
-function checkPassword(videoUrl){
+function filterCategory(category){
 
-let password = prompt("กรุณาใส่รหัสผ่านเพื่อดูวิดีโอ");
+let result=movies.filter(movie=>movie.category==category);
 
-if(password === "1234"){
+displayMovies(result);
 
-document.getElementById("videoContainer").innerHTML += `
+}
+
+function searchMovie(){
+
+let text=document.getElementById("searchInput").value.toLowerCase();
+
+let result=movies.filter(movie=>
+movie.title.toLowerCase().includes(text)
+);
+
+displayMovies(result);
+
+}
+
+function showPasswordBox(video){
+
+currentVideo=video;
+
+let container=document.getElementById("movieContainer");
+
+container.innerHTML+=`
+
+<div class="password-box">
+
+<h3>ใส่รหัสผ่าน</h3>
+
+<input type="password" id="passwordInput">
+
+<br>
+
+<button onclick="checkPassword()">ยืนยัน</button>
+
+</div>
+
+`;
+
+}
+
+function checkPassword(){
+
+let pass=document.getElementById("passwordInput").value;
+
+if(pass=="1234"){
+
+let container=document.getElementById("movieContainer");
+
+container.innerHTML+=`
 
 <div class="video-wrapper">
-<iframe src="${videoUrl}" allowfullscreen></iframe>
+
+<iframe src="${currentVideo}" allowfullscreen></iframe>
+
 </div>
 
 `;
 
 }else{
 
-alert("รหัสไม่ถูกต้อง ดูวิดีโอไม่ได้");
+alert("รหัสผ่านผิด");
 
 }
 
-}
-
-function filterCategory(cat){
-let result = movies.filter(movie=>movie.category===cat);
-displayMovies(result);
-}
-
-function searchMovie(){
-let keyword = document.getElementById("searchInput").value.toLowerCase();
-let result = movies.filter(movie=>
-movie.title.toLowerCase().includes(keyword)
-);
-displayMovies(result);
 }
 
 </script>
