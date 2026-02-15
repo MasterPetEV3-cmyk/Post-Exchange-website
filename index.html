@@ -129,23 +129,14 @@ text-align:center;
 <h2>หมวดหมู่</h2>
 
 <button class="category-btn" onclick="filterCategory('romance')">โรแมนติก</button>
-
 <button class="category-btn" onclick="filterCategory('drama')">ดราม่า</button>
-
 <button class="category-btn" onclick="filterCategory('action')">แอคชั่น</button>
-
 <button class="category-btn" onclick="filterCategory('comedy')">ตลก</button>
-
 <button class="category-btn" onclick="filterCategory('horror')">สยองขวัญ</button>
-
 <button class="category-btn" onclick="filterCategory('mystery')">สืบสวน</button>
-
 <button class="category-btn" onclick="filterCategory('fantasy')">แฟนตาซี</button>
-
 <button class="category-btn" onclick="filterCategory('scifi')">ไซไฟ</button>
-
 <button class="category-btn" onclick="filterCategory('documentary')">สารคดี</button>
-
 <button class="category-btn" onclick="filterCategory('family')">ครอบครัว</button>
 
 <div id="videoContainer"></div>
@@ -176,8 +167,6 @@ nez47986@gmail.com
 
 </section>
 
-
-
 <footer>
 © 2026 Post Exchange Website
 </footer>
@@ -205,15 +194,11 @@ video:"https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview
 function displayMovies(list){
 
 let container = document.getElementById("videoContainer");
-
 container.innerHTML="";
 
 if(list.length===0){
-
 container.innerHTML="<p>ไม่มีหนัง</p>";
-
 return;
-
 }
 
 list.forEach(movie=>{
@@ -224,11 +209,10 @@ container.innerHTML+=`
 
 <img src="${movie.cover}" class="movie-cover">
 
-<div class="video-wrapper">
-
-<iframe src="${movie.video}" allowfullscreen></iframe>
-
-</div>
+<button onclick="checkPassword('${movie.video}')"
+style="padding:10px 20px;border:none;border-radius:8px;background:#38bdf8;color:white;cursor:pointer;">
+ดูวิดีโอ
+</button>
 
 <hr>
 
@@ -238,24 +222,39 @@ container.innerHTML+=`
 
 }
 
-function filterCategory(cat){
+function checkPassword(videoUrl){
 
-let result = movies.filter(movie=>movie.category===cat);
+let password = prompt("กรุณาใส่รหัสผ่านเพื่อดูวิดีโอ");
 
-displayMovies(result);
+if(password === "1234"){
+
+document.getElementById("videoContainer").innerHTML += `
+
+<div class="video-wrapper">
+<iframe src="${videoUrl}" allowfullscreen></iframe>
+</div>
+
+`;
+
+}else{
+
+alert("รหัสไม่ถูกต้อง ดูวิดีโอไม่ได้");
 
 }
 
+}
+
+function filterCategory(cat){
+let result = movies.filter(movie=>movie.category===cat);
+displayMovies(result);
+}
+
 function searchMovie(){
-
 let keyword = document.getElementById("searchInput").value.toLowerCase();
-
 let result = movies.filter(movie=>
 movie.title.toLowerCase().includes(keyword)
 );
-
 displayMovies(result);
-
 }
 
 </script>
