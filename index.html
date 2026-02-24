@@ -12,7 +12,6 @@ margin:0;
 font-family:Arial;
 background:#0f172a;
 color:white;
-transition:0.3s;
 }
 
 nav{
@@ -117,75 +116,31 @@ text-align:center;
 margin-top:40px;
 }
 
-/* ======= เพิ่มระบบใหม่ ======= */
-
-.light-mode{
-background:white;
-color:black;
-}
-
-.like-btn{
-background:#f43f5e;
-padding:8px 15px;
-border:none;
-border-radius:6px;
-color:white;
-cursor:pointer;
-margin:5px;
-}
-
-.stats-box{
-background:#1e293b;
-padding:15px;
-margin:20px auto;
-border-radius:10px;
-width:80%;
-}
-
-.clock{
-font-size:20px;
-margin-top:10px;
-color:#38bdf8;
-}
-
-.add-movie-box{
-background:#1e293b;
-padding:20px;
-border-radius:10px;
-width:300px;
-margin:auto;
-}
-
-.add-movie-box input{
-padding:8px;
-margin:5px;
-width:90%;
-border:none;
-border-radius:6px;
-}
-
 </style>
-</head>
 
+</head>
 <body>
 
 <nav>
+
 <a href="#home">หน้าแรก</a>
 <a href="#category">หมวดหมู่</a>
 <a href="#about">เกี่ยวกับ</a>
 <a href="#contact">ติดต่อ</a>
-<button class="category-btn" onclick="toggleMode()">🌙 โหมด</button>
+
 </nav>
 
 <section id="home">
+
 <h1>🎬 Post Exchange Website</h1>
-<div class="clock" id="clock"></div>
+
 <input id="searchInput" placeholder="ค้นหาหนัง" style="padding:10px;border-radius:6px;border:none;">
 <button onclick="searchMovie()" class="category-btn">ค้นหา</button>
-<button onclick="randomMovie()" class="category-btn">🎲 สุ่มหนัง</button>
+
 </section>
 
 <section id="category">
+
 <h2>หมวดหมู่</h2>
 
 <button class="category-btn" onclick="filterCategory('romance')">โรแมนติก</button>
@@ -197,295 +152,165 @@ border-radius:6px;
 
 <div id="movieContainer"></div>
 
-<div class="stats-box" id="statsBox"></div>
+</section>
+
+<section id="about">
+
+<h2>เกี่ยวกับเรา</h2>
+<p>เว็บไซต์นี้สร้างโดย MasterPetEV3</p>
 
 </section>
 
-<section>
-<h2>➕ เพิ่มหนังใหม่</h2>
-<div class="add-movie-box">
-<input type="text" id="newTitle" placeholder="ชื่อหนัง">
-<input type="text" id="newCategory" placeholder="หมวดหมู่">
-<input type="text" id="newCover" placeholder="ลิงก์รูป">
-<input type="text" id="newVideo" placeholder="ลิงก์วิดีโอ">
-<button class="category-btn" onclick="addMovie()">เพิ่มหนัง</button>
-</div>
+<section id="contact">
+
+<h2>ติดต่อ</h2>
+
+<p>
+<a href="mailto:petmongkolpromduang@gmail.com" style="color:red;text-decoration:none;">
+petmongkolpromduang@gmail.com
+</a>
+</p>
+
+<p>
+<a href="mailto:nez47986@gmail.com" style="color:red;text-decoration:none;">
+nez47986@gmail.com
+</a>
+</p>
+
 </section>
 
 <footer>
+
 © 2026 Post Exchange Website
+
 </footer>
 
 <script>
 
-/* ========= ระบบนาฬิกา ========= */
-function updateClock(){
-let now=new Date();
-document.getElementById("clock").innerHTML=
-now.toLocaleTimeString();
-}
-setInterval(updateClock,1000);
+let movies = [
 
-/* ========= โหมดกลางวัน/กลางคืน ========= */
-function toggleMode(){
-document.body.classList.toggle("light-mode");
-}
+{
+title:"รู้ว่ามีอยู่ก็สายไป",
+category:"romance",
+cover:"cover.jpg",
+video:"https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
+},
 
-/* ========= ระบบสุ่มหนัง ========= */
-function randomMovie(){
-if(movies.length==0) return;
-let random=movies[Math.floor(Math.random()*movies.length)];
-displayMovies([random]);
+{
+title:"รู้ว่ามีอยู่ก็สายไป",
+category:"drama",
+cover:"cover.jpg",
+video:"https://drive.google.com/file/d/1-zR7PqptfUVgmAkDBIZinag4GDfndViC/preview"
 }
 
-/* ========= ระบบเพิ่มหนัง ========= */
-function addMovie(){
-let title=document.getElementById("newTitle").value;
-let category=document.getElementById("newCategory").value;
-let cover=document.getElementById("newCover").value;
-let video=document.getElementById("newVideo").value;
+];
 
-if(title && category && cover && video){
-movies.push({
-title:title,
-category:category,
-cover:cover,
-video:video
-});
-alert("เพิ่มหนังสำเร็จ!");
-updateStats();
-}else{
-alert("กรอกข้อมูลให้ครบ");
-}
-}
+let currentVideo="";
 
-/* ========= ระบบไลค์ ========= */
-let likes=JSON.parse(localStorage.getItem("likes"))||{};
+function displayMovies(list){
 
-function likeMovie(title){
-if(!likes[title]) likes[title]=0;
-likes[title]++;
-localStorage.setItem("likes",JSON.stringify(likes));
-alert("คุณกดไลค์ "+title+" แล้ว ("+likes[title]+")");
-}
-
-/* ========= แสดงสถิติ ========= */
-function updateStats(){
-let stats=document.getElementById("statsBox");
-stats.innerHTML=
-"📊 จำนวนหนังทั้งหมด: "+movies.length+" เรื่อง";
-}
-
-updateStats();
-
-/* ========= Export JSON ========= */
-function exportMovies(){
-let dataStr="data:text/json;charset=utf-8,"+
-encodeURIComponent(JSON.stringify(movies));
-let dl=document.createElement("a");
-dl.setAttribute("href",dataStr);
-dl.setAttribute("download","movies.json");
-dl.click();
-}
-
-/* ========= แจ้งเตือนเมื่อเข้าเว็บ ========= */
-window.onload=function(){
-alert("ยินดีต้อนรับสู่ Post Exchange Website 🎬");
-updateStats();
-};
-
-</script>
-<script>
-
-/* ===============================
-   🔥 ADVANCED EXTRA FEATURES
-   เพิ่มทั้งหมดโดยไม่แตะโค้ดเดิม
-================================= */
-
-/* ====== 1. ระบบบันทึกจำนวนครั้งที่ดู ====== */
-let viewCount = JSON.parse(localStorage.getItem("viewCount")) || {};
-
-function increaseView(title){
-if(!viewCount[title]) viewCount[title] = 0;
-viewCount[title]++;
-localStorage.setItem("viewCount", JSON.stringify(viewCount));
-}
-
-function showViewCount(title){
-if(viewCount[title]){
-return "👁 ดูแล้ว " + viewCount[title] + " ครั้ง";
-}else{
-return "👁 ยังไม่มีการดู";
-}
-}
-
-/* ====== 2. Hook เข้า checkPassword เดิม ====== */
-let oldCheckPassword = checkPassword;
-
-checkPassword = function(){
-let pass=document.getElementById("passwordInput").value;
-if(pass=="1234"){
-increaseView(currentVideo);
-}
-oldCheckPassword();
-}
-
-/* ====== 3. ระบบ Favorites ====== */
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-function addToFavorite(title){
-if(!favorites.includes(title)){
-favorites.push(title);
-localStorage.setItem("favorites", JSON.stringify(favorites));
-alert("⭐ เพิ่มในรายการโปรดแล้ว");
-}else{
-alert("มีอยู่แล้ว");
-}
-}
-
-function showFavorites(){
 let container=document.getElementById("movieContainer");
-container.innerHTML="<h2>⭐ รายการโปรด</h2>";
-movies.forEach(movie=>{
-if(favorites.includes(movie.title)){
+container.innerHTML="";
+
+if(list.length==0){
+container.innerHTML="ไม่พบหนัง";
+return;
+}
+
+list.forEach(movie=>{
+
 container.innerHTML+=`
+
 <h3>${movie.title}</h3>
+
 <img src="${movie.cover}" class="movie-cover">
+
+<br>
+
+<button class="watch-btn"
+onclick="showPasswordBox('${movie.video}')">
+ดูวิดีโอ
+</button>
+
 <hr>
+
 `;
-}
+
 });
+
 }
 
-/* ====== 4. ระบบเรียงลำดับ A-Z ====== */
-function sortAZ(){
-let sorted=[...movies].sort((a,b)=>a.title.localeCompare(b.title));
-displayMovies(sorted);
+function filterCategory(category){
+
+let result=movies.filter(movie=>movie.category==category);
+
+displayMovies(result);
+
 }
 
-/* ====== 5. ระบบเรียงลำดับ Z-A ====== */
-function sortZA(){
-let sorted=[...movies].sort((a,b)=>b.title.localeCompare(a.title));
-displayMovies(sorted);
-}
+function searchMovie(){
 
-/* ====== 6. ปุ่มเพิ่มเมนูใหม่ ====== */
-let extraMenu=document.createElement("div");
-extraMenu.style.textAlign="center";
-extraMenu.style.marginTop="20px";
-extraMenu.innerHTML=`
-<button class="category-btn" onclick="sortAZ()">เรียง A-Z</button>
-<button class="category-btn" onclick="sortZA()">เรียง Z-A</button>
-<button class="category-btn" onclick="showFavorites()">⭐ รายการโปรด</button>
-`;
-document.getElementById("category").appendChild(extraMenu);
+let text=document.getElementById("searchInput").value.toLowerCase();
 
-/* ====== 7. ระบบค้นหาทันที (Live Search) ====== */
-document.getElementById("searchInput").addEventListener("keyup",function(){
-let text=this.value.toLowerCase();
 let result=movies.filter(movie=>
 movie.title.toLowerCase().includes(text)
 );
+
 displayMovies(result);
-});
 
-/* ====== 8. ระบบโหลดข้อมูลจาก JSON ====== */
-function importMovies(event){
-let file=event.target.files[0];
-let reader=new FileReader();
-reader.onload=function(e){
-let data=JSON.parse(e.target.result);
-movies=data;
-alert("โหลดข้อมูลสำเร็จ");
-}
-reader.readAsText(file);
 }
 
-let importBox=document.createElement("div");
-importBox.style.textAlign="center";
-importBox.style.marginTop="20px";
-importBox.innerHTML=`
-<h3>📂 นำเข้าหนัง (JSON)</h3>
-<input type="file" onchange="importMovies(event)">
-`;
-document.getElementById("category").appendChild(importBox);
+function showPasswordBox(video){
 
-/* ====== 9. ระบบแสดงเวลาที่เข้าเว็บ ====== */
-let visitTime=new Date();
-let visitBox=document.createElement("div");
-visitBox.style.textAlign="center";
-visitBox.style.marginTop="20px";
-visitBox.innerHTML="🕒 คุณเข้าเว็บเวลา: "+visitTime.toLocaleString();
-document.body.appendChild(visitBox);
+currentVideo=video;
 
-/* ====== 10. ระบบ Top Viewed ====== */
-function showTopViewed(){
-let sorted=Object.entries(viewCount).sort((a,b)=>b[1]-a[1]);
 let container=document.getElementById("movieContainer");
-container.innerHTML="<h2>🔥 หนังยอดนิยม</h2>";
-sorted.forEach(item=>{
+
 container.innerHTML+=`
-<p>${item[0]} - ดู ${item[1]} ครั้ง</p>
+
+<div class="password-box">
+
+<h3>ใส่รหัสผ่าน</h3>
+
+<input type="password" id="passwordInput">
+
+<br>
+
+<button onclick="checkPassword()">ยืนยัน</button>
+
+</div>
+
 `;
-});
+
 }
 
-/* ====== 11. ปุ่มหนังยอดนิยม ====== */
-let topBtn=document.createElement("button");
-topBtn.className="category-btn";
-topBtn.innerText="🔥 หนังยอดนิยม";
-topBtn.onclick=showTopViewed;
-document.getElementById("category").appendChild(topBtn);
+function checkPassword(){
 
-/* ====== 12. ระบบแสดงจำนวนหนังแต่ละหมวด ====== */
-function showCategoryStats(){
-let stats={};
-movies.forEach(m=>{
-if(!stats[m.category]) stats[m.category]=0;
-stats[m.category]++;
-});
+let pass=document.getElementById("passwordInput").value;
+
+if(pass=="1234"){
+
 let container=document.getElementById("movieContainer");
-container.innerHTML="<h2>📊 สถิติหมวดหมู่</h2>";
-for(let key in stats){
-container.innerHTML+=`<p>${key} : ${stats[key]} เรื่อง</p>`;
+
+container.innerHTML+=`
+
+<div class="video-wrapper">
+
+<iframe src="${currentVideo}" allowfullscreen></iframe>
+
+</div>
+
+`;
+
+}else{
+
+alert("รหัสผ่านผิด");
+
 }
+
 }
-
-let statsBtn=document.createElement("button");
-statsBtn.className="category-btn";
-statsBtn.innerText="📊 สถิติหมวด";
-statsBtn.onclick=showCategoryStats;
-document.getElementById("category").appendChild(statsBtn);
-
-/* ====== 13. Auto Scroll Top Button ====== */
-let scrollBtn=document.createElement("button");
-scrollBtn.innerText="⬆ กลับขึ้นบน";
-scrollBtn.className="category-btn";
-scrollBtn.style.position="fixed";
-scrollBtn.style.bottom="20px";
-scrollBtn.style.right="20px";
-scrollBtn.onclick=function(){
-window.scrollTo({top:0,behavior:"smooth"});
-};
-document.body.appendChild(scrollBtn);
-
-/* ====== 14. ระบบ Random Background ====== */
-function randomBackground(){
-let colors=["#0f172a","#1e293b","#111827","#0c4a6e","#1e3a8a"];
-document.body.style.background=
-colors[Math.floor(Math.random()*colors.length)];
-}
-setInterval(randomBackground,15000);
-
-/* ====== 15. ระบบแจ้งเตือนเมื่อเลื่อนถึงท้ายเว็บ ====== */
-window.addEventListener("scroll",function(){
-if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
-console.log("คุณเลื่อนถึงท้ายเว็บแล้ว");
-}
-});
-
-/* ====== END EXTRA FEATURES ====== */
 
 </script>
+
 </body>
 </html>
